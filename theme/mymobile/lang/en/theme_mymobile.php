@@ -29,6 +29,7 @@ $string['colourswatch_desc'] = 'Toggle the color swatch of the theme between gre
 $string['grey'] = 'Grey';
 $string['light'] = 'Light/Blue';
 $string['mtoggle'] = 'Toggle 2nd Column';
+$string['editortoggle'] = 'HTML editor';
 $string['no'] = 'No';
 $string['pluginname'] = 'MyMobile';
 $string['region-myblocks'] = 'block region';

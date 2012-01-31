@@ -30,6 +30,22 @@ $(document).ready(function() {
                 $('.ui-page-active').addClass("has-myblocks");
             }
         });
+        
+        //tinymce editor removal switch
+        $('#myeditor').live("change",function() {
+            var slids = $(this).val();
+            M.util.set_user_preference('theme_mymobile_chosen_editor', slids);
+            $.mobile.showPageLoadingMsg();
+            if ($(this).hasClass('myeditor3')) {
+            window.setTimeout(function() {
+            window.location.href=siteurl;
+            }, 1500);
+            } else {
+            window.setTimeout(function() {
+            window.location.href=window.location.href;
+            }, 1500);
+            }
+        });
 
         //tabs- links set to external to fix forms
         $('div.tabtree ul.tabrow0').attr("data-role", "controlgroup");

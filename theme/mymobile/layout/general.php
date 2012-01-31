@@ -102,6 +102,10 @@ if ($gowide) {
 }
 $usercol = (mymobile_get_colpos() == 'on');
 
+//tinymce editor on or off
+mymobile_initialise_editor($PAGE);
+$usereditor = (mymobile_get_editor() == 'on');
+
 $renderer = $PAGE->get_renderer('theme_mymobile');
 
 echo $OUTPUT->doctype() ?>
@@ -159,6 +163,13 @@ echo $OUTPUT->doctype() ?>
             //load lang menu if available
             echo $OUTPUT->lang_menu();
             ?>
+             <?php if(!$gowide) { ?>
+            <label for="slider2"><?php p(get_string('editortoggle','theme_mymobile')); ?>:</label>
+            <select name="myeditor" id="myeditor" class="myeditor2 myeditor3" data-role="slider" data-track-theme="b">
+            <option value="on" >On</option>
+            <option value="off" <?php if(!$usereditor) { ?>selected="selected"<?php } ?>>Off</option>
+            </select>
+            <?php } ?>
             <ul data-role="listview" data-theme="<?php echo $dthemeb;?>" data-dividertheme="<?php echo $dtheme;?>" data-inset="true" class="settingsul">
                 <?php echo $renderer->settings_tree($PAGE->settingsnav); ?>
             </ul>
@@ -214,6 +225,13 @@ echo $OUTPUT->doctype() ?>
                         <option value="on">On</option>
                         <option value="off">Off</option>
                     </select>
+                    <div class="clearfix">
+                    <label for="slider2"><?php p(get_string('editortoggle','theme_mymobile')); ?>:</label>
+                    <select name="myeditor" id="myeditor" class="myeditor2" data-role="slider" data-track-theme="b">
+                        <option value="on" >On</option>
+                        <option value="off" <?php if(!$usereditor) { ?>selected="selected"<?php } ?>>Off</option>
+                    </select>
+                    </div>
                 </div>
 
                 <?php } else if (!isloggedin() || isguestuser()) { ?>

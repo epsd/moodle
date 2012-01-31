@@ -41,3 +41,33 @@ function mymobile_initialise_colpos(moodle_page $page) {
 function mymobile_get_colpos($default = 'on') {
     return get_user_preferences('theme_mymobile_chosen_colpos', $default);
 }
+/**
+ * Allow AJAX updating of html editor or not
+ *
+ * @param moodle_page $page
+ */
+function mymobile_initialise_editor(moodle_page $page) {
+    user_preference_allow_ajax_update('theme_mymobile_chosen_editor', PARAM_ALPHA);
+}
+
+/**
+ * Get the user preference for html editor or not
+ *
+ * @param string $default
+ * @return mixed
+ */
+function mymobile_get_editor($default = 'off') {
+    return get_user_preferences('theme_mymobile_chosen_editor', $default);
+}
+
+/**
+ * Get the user preference for editor or not and set it
+ *
+ * @param string $default
+ * @return mixed
+ */
+if (mymobile_get_editor() == 'on') {
+    $CFG->texteditors = 'tinymce,textarea';
+} else {
+    $CFG->texteditors = 'textarea';
+}

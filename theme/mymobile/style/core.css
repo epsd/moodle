@@ -1598,6 +1598,12 @@ body .ui-loader.ui-body-e h1 {
     -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#3c3c3c', EndColorStr='#111111')";
 }
 /*split page stuff for tablets */
+#sliderdiv {
+    padding-top: 0.75em;
+}
+#sliderdiv .ui-slider-switch {
+    margin-bottom: 0.75em;
+}
     div.tablets, #sliderdiv, .has-myblocks .jsetsbar {
         display: none;
     }
