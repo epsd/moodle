@@ -105,7 +105,7 @@ $usercol = (mymobile_get_colpos() == 'on');
 $renderer = $PAGE->get_renderer('theme_mymobile');
 
 echo $OUTPUT->doctype() ?>
-<html <?php echo $OUTPUT->htmlattributes() ?>>
+<html id="mymobile" <?php echo $OUTPUT->htmlattributes() ?>>
 <head>
     <title><?php echo $PAGE->title ?></title>
     <link rel="shortcut icon" href="<?php echo $OUTPUT->pix_url('favicon', 'theme')?>" />
@@ -210,7 +210,7 @@ echo $OUTPUT->doctype() ?>
 
                 <div data-role="fieldcontain" id="sliderdiv">
                     <label for="slider"><?php p(get_string('mtoggle','theme_mymobile')); ?>:</label>
-                    <select name="slider" class="slider" data-role="slider" data-track-theme="b">
+                    <select name="slider" class="slider" data-role="slider">
                         <option value="on">On</option>
                         <option value="off">Off</option>
                     </select>
