@@ -223,6 +223,9 @@ div.categorylist div.category {
 #page-course-indexPAGE .category .name {
     float: none;
 }
+#page-site-indexPAGE .ui-controlgroup-vertical .ui-btn.ui-corner-bottom {
+    border-bottom-width: 1px;
+}
 /* course stuff */
 /*coursebox summary has an empy &nbsp; in it, which chops things up. need a fix...  hidesummary does this and is added via js... not anymore...*/
 .section div.summary {
@@ -425,6 +428,34 @@ span.instancename {
 }
 .label div.no-overflow {
     overflow:inherit !important;
+}
+/*course setions as pages for 2.3+ */
+.course-content ul.topics .section-summary {
+	-moz-border-radius: 				.6em /*{global-radii-blocks}*/;
+	-webkit-border-radius: 				.6em /*{global-radii-blocks}*/;
+	border-radius: 						.6em /*{global-radii-blocks}*/;
+}
+.course-content ul.topics .section-summary .summarytext{
+    margin: 0 0;
+    padding: .5em;
+}
+.course-content ul.topics li.section-summary .left {
+    background: transparent;
+    border: 0px;
+}
+.course-content .single-section .section-navigation .mdl-left, .course-content .single-section .section-navigation .mdl-right {
+    float: none;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+.course-content .single-section .section-navigation .mdl-right .rarrow {
+    font-size: 80%;
+}
+.section-navigation.header.headingblock .mdl-left a .larrow, .section-navigation.mdl-bottom .mdl-left a .larrow, .section-navigation.header.headingblock .mdl-right a .rarrow, .section-navigation.mdl-bottom .mdl-right a .rarrow {
+    display: none;
+}
+.single-section .left.side {
+    display: none;
 }
 /*forms */
 .buttons .singlebutton, .buttons .singlebutton form, .buttons .singlebutton div, .mform .fitem fieldset.fgroup label, .mform .fradio label, .mform .fcheckbox label, .mform fieldset.fdate_selector label  {
@@ -1649,6 +1680,25 @@ div.tablets, #sliderdiv, .has-myblocks .jsetsbar {
     height: 100%;
     max-width: 100px;
     max-height: 100px;
+}
+/*filepicker */
+.yui3-widget.yui3-panel.yui3-widget-positioned.yui3-widget-stacked.yui3-widget-modal.yui3-dd-draggable.yui3-panel-focused {
+	top: 0px !important;
+	left: 0px !important;
+    width: 100% !important;
+}
+#filesskin .file-picker.fp-generallayout {
+    width: 100%;
+}
+.file-picker .fp-content,.file-picker .fp-repo-items {
+    width: 100%;
+}
+.file-picker .fp-repo-area {
+    width: 80px;
+}
+.file-picker .fp-repo-items {
+    display: inline-block;
+    margin-left: 81px;
 }
 /** Custom CSS **/
 [[setting:customcss]]

@@ -145,7 +145,11 @@ class theme_mymobile_core_renderer extends core_renderer {
         if ($classes == 'helpheading') {
             // Keeps wrap from help headings in dialog.
             $content = parent::heading($text, $level, $classes, $id);
-        } else {
+        }
+        else if ($classes == 'accesshide' || $classes == 'section-title') {
+        	$content .= parent::heading($text, $level, $classes, $id);
+        }
+         else {
             $content  = html_writer::start_tag('div', array('class' => 'headingwrap ui-bar-'.$this->theme_swatch() .' ui-footer'));
             $content .= parent::heading($text, $level, $classes.' ui-title', $id);
             $content .= html_writer::end_tag('div');

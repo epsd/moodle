@@ -94,9 +94,14 @@ $(document).ready(function() {
         $('.section li img').addClass("ui-li-icon");
         $('.course-content ul.section').attr("data-role", "listview").attr("data-inset", "true").attr("data-theme", mythemeb);
         $('.sitetopic ul.section').attr("data-role", "listview").attr("data-inset", "true").attr("data-theme", mythemeb);
+        $('.section-navigation.header.headingblock, .section-navigation.mdl-bottom').attr("data-role", "controlgroup");
+        $('.section-navigation.header.headingblock .mdl-left a, .section-navigation.mdl-bottom .mdl-left a').attr("data-role", "button").attr("data-icon", "arrow-l");
+        $('.section-navigation.header.headingblock .mdl-right a, .section-navigation.mdl-bottom .mdl-right a').attr("data-role", "button").attr("data-icon", "arrow-r").attr("data-iconpos", "right");
+        $('.section-navigation.header.headingblock .mdl-align.title, .section-navigation.mdl-bottom .mdl-align a').attr("data-role", "button");
         $('.topics div.left.side').addClass("ui-bar-" + mytheme);
         $('.section.hidden div.headingwrap').attr("data-theme", mythemeb);
         //$('.topics #section-0 div.left.side').removeClass("ui-li ui-li-divider ui-btn ui-bar-a");
+        $('h3.section-title a').attr("data-role", "button");
         $('.section .resource.modtype_resource a, .section .modtype_survey a').attr("data-ajax", "false");
 
         //toggle completion checkmarks and form fixes
@@ -153,6 +158,7 @@ $(document).ready(function() {
         $('.forumpost div.row.header').addClass("ui-li ui-li-divider ui-btn ui-bar-" + mytheme);
         $('div.subscribelink a').attr("data-role", "button").attr("data-inline", "true");
         $('.unlist').attr("data-role", "controlgroup");
+        $('.unlist li:last-child a').addClass("ui-corner-bottom");
         $('div.coursebox a').attr("data-role", "button").attr("data-icon", "arrow-r").attr("data-iconpos", "right").attr("data-theme", mythemeb);
         $('.box.categorybox').attr("data-role", "controlgroup");
         $('div.categorylist div.category a').attr("data-role", "button").attr("data-theme", mythemeb);

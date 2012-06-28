@@ -122,7 +122,7 @@ echo $OUTPUT->doctype() ?>
     <?php echo $OUTPUT->standard_top_of_body_html() ?>
     <div id="<?php p($PAGE->bodyid) ?>PAGE" data-role="page" class="generalpage <?php echo 'ajaxedclass '; p($PAGE->bodyclasses.' '.join(' ', $bodyclasses));  ?> <?php if ($hasmyblocks && $usercol) { echo 'has-myblocks'; } ?> " data-title="<?php p($SITE->shortname) ?>">
         <!-- start header -->
-        <div data-role="header" <?php echo($datatheme);?> class="mymobileheader" data-position="fixed">
+        <div data-role="header" <?php echo($datatheme);?> class="mymobileheader">
             <h1><?php echo $PAGE->heading ?></h1>
             <?php if (isloggedin() && $mypagetype != 'site-index') { ?>
             <a class="ui-btn-right" data-icon="home" href="<?php p($CFG->wwwroot) ?>" data-iconpos="notext" data-ajax="false"><?php p(get_string('home')); ?></a>
