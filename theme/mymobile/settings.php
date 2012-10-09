@@ -73,6 +73,14 @@ if ($ADMIN->fulltree) {
     $choices = array('tabshow' => $yesstr, 'tabnoshow' => $nostr);
     $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);
     $settings->add($setting);
+    
+    $name = 'theme_mymobile/useajax';
+    $title = get_string('useajax','theme_mymobile');
+    $description = get_string('useajax_desc', 'theme_mymobile');
+    $default = 'ajaxyes';
+    $choices = array('ajaxyes' => $yesstr, 'ajaxno' => $nostr);
+    $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);
+    $settings->add($setting);
 
     $name = 'theme_mymobile/customcss';
     $title = get_string('customcss','theme_mymobile');

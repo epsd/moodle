@@ -71,6 +71,12 @@ if (!empty($PAGE->theme->settings->usetableview)) {
     $showusetableview = 'tabshow';
 }
 
+if (!empty($PAGE->theme->settings->useajax)) {
+    $useajax = $PAGE->theme->settings->useajax;
+} else {
+    $useajax = 'ajaxyes';
+}
+
 // TODO: Fix this hardcoding there are other course formats that peopleuse.
 //       Probably changing to an appropriate regex will do.
 if ($mypagetype == 'course-view-topics' || $mypagetype == 'course-view-weeks') {
@@ -92,6 +98,7 @@ $hasmyblocks = $PAGE->blocks->region_has_content('myblocks', $OUTPUT);
 $bodyclasses = array();
 $bodyclasses[] = (string)$hasithumb;
 $bodyclasses[] = (string)$showsitetopic;
+$bodyclasses[] = (string)$useajax;
 // add ithumb class to decide whether to show or hide images and site topic
 
 // TODO: Better illustrate preceedence
@@ -122,7 +129,7 @@ echo $OUTPUT->doctype() ?>
     <?php echo $OUTPUT->standard_top_of_body_html() ?>
     <div id="<?php p($PAGE->bodyid) ?>PAGE" data-role="page" class="generalpage <?php echo 'ajaxedclass '; p($PAGE->bodyclasses.' '.join(' ', $bodyclasses));  ?> <?php if ($hasmyblocks && $usercol) { echo 'has-myblocks'; } ?> " data-title="<?php p($SITE->shortname) ?>">
         <!-- start header -->
-        <div data-role="header" <?php echo($datatheme);?> class="mymobileheader" data-position="fixed">
+        <div data-role="header" <?php echo($datatheme);?> class="mymobileheader">
             <h1><?php echo $PAGE->heading ?></h1>
             <?php if (isloggedin() && $mypagetype != 'site-index') { ?>
             <a class="ui-btn-right" data-icon="home" href="<?php p($CFG->wwwroot) ?>" data-iconpos="notext" data-ajax="false"><?php p(get_string('home')); ?></a>
@@ -210,7 +217,7 @@ echo $OUTPUT->doctype() ?>
 
                 <div data-role="fieldcontain" id="sliderdiv">
                     <label for="slider"><?php p(get_string('mtoggle','theme_mymobile')); ?>:</label>
-                    <select name="slider" class="slider" data-role="slider" id="slider">
+                    <select name="slider" class="slider" data-role="slider">
                         <option value="on">On</option>
                         <option value="off">Off</option>
                     </select>

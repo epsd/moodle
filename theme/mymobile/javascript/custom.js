@@ -1,6 +1,4 @@
 $(document).bind("mobileinit", function(){
-//mobile init stuff 11/12/10
-//turn off ajax forms...
 $.mobile.defaultPageTransition = "slide";
 });
 
@@ -9,8 +7,9 @@ $(document).ready(function() {
     var siteurl = $('.mobilesiteurl').attr("id");
     var mytheme = $(".datatheme").attr("id");
     var mythemeb = $(".datathemeb").attr("id");
-
-
+    if ($('body').hasClass('ajaxno')) {
+    $.mobile.ajaxEnabled = false;
+    }
     //function below does generic stuff before creating all pages...
     $('div').live('pagebeforecreate', function(event, ui) {
         //turn off ajax on all forms for now as of beta1
@@ -60,8 +59,8 @@ $(document).ready(function() {
             return false;
         });
 
-        //calendar and other links that need to be external
-        $('.maincalendar .filters a, li.activity.scorm a, div.files a, #page-user-filesPAGE li div a, .maincalendar .bottom a, .section li.url.modtype_url a, .resourcecontent .resourcemediaplugin a, #underfooter .noajax a, .block_mnet_hosts .content a, .block_private_files .content a, a.portfolio-add-link, #attempts td a').attr("data-ajax", "false");
+       //calendar and other links that need to be external
+        $('.maincalendar .filters a, li.activity.scorm a, div.files a, #page-user-filesPAGE li div a, .maincalendar .bottom a, .section li.url.modtype_url a, .resourcecontent .resourcemediaplugin a, #underfooter .noajax a, .block_mnet_hosts .content a, .block_private_files .content a, a.portfolio-add-link, #attempts td a, .settingsul li a, .foldertree li a').attr("data-ajax", "false");
 
         //add blank to open in window for some
         $('#page-mod-url-viewPAGE div.urlworkaround a, #page-mod-resource-viewPAGE div.resourceworkaround a, .mediaplugin a.mediafallbacklink, #page-mod-resource-viewPAGE .resourcemp3 a, .foldertree li a').attr("target", "_blank").attr("data-role", "button").attr("data-icon", "plus");
@@ -81,6 +80,7 @@ $(document).ready(function() {
             var meb = encodeURI($(this).val());
             $(this).val("-1");
             if (meb != "" && meb != "-1") {
+            $.mobile.showPageLoadingMsg();
                 $.mobile.changePage(meb);
             }
        });
@@ -94,9 +94,14 @@ $(document).ready(function() {
         $('.section li img').addClass("ui-li-icon");
         $('.course-content ul.section').attr("data-role", "listview").attr("data-inset", "true").attr("data-theme", mythemeb);
         $('.sitetopic ul.section').attr("data-role", "listview").attr("data-inset", "true").attr("data-theme", mythemeb);
+        $('.section-navigation.header.headingblock, .section-navigation.mdl-bottom').attr("data-role", "controlgroup");
+        $('.section-navigation.header.headingblock .mdl-left a, .section-navigation.mdl-bottom .mdl-left a').attr("data-role", "button").attr("data-icon", "arrow-l");
+        $('.section-navigation.header.headingblock .mdl-right a, .section-navigation.mdl-bottom .mdl-right a').attr("data-role", "button").attr("data-icon", "arrow-r").attr("data-iconpos", "right");
+        $('.section-navigation.header.headingblock .mdl-align.title, .section-navigation.mdl-bottom .mdl-align a').attr("data-role", "button");
         $('.topics div.left.side').addClass("ui-bar-" + mytheme);
         $('.section.hidden div.headingwrap').attr("data-theme", mythemeb);
         //$('.topics #section-0 div.left.side').removeClass("ui-li ui-li-divider ui-btn ui-bar-a");
+        $('h3.section-title a').attr("data-role", "button");
         $('.section .resource.modtype_resource a, .section .modtype_survey a').attr("data-ajax", "false");
 
         //toggle completion checkmarks and form fixes
@@ -138,7 +143,7 @@ $(document).ready(function() {
         //actual forum posting
         $('.forumpost div.row.header').addClass("ui-li ui-li-divider ui-btn ui-bar-" + mytheme);
         $('.options div.commands').attr("data-role", "controlgroup").attr("data-type", "horizontal");
-        $('.options div.commands a').attr("data-role", "button").attr("data-ajax", "false").attr("data-inline", "true");
+        $('.options div.commands a').attr("data-role", "button").attr("data-ajax", "false").attr("data-mini", "true").attr("data-inline", "true");
         $('.forumpost div.author a').attr("data-inline", "true");
         $('.options div.commands').contents().filter(function() {
             return this.nodeType == 3; //Node.TEXT_NODE
@@ -153,6 +158,7 @@ $(document).ready(function() {
         $('.forumpost div.row.header').addClass("ui-li ui-li-divider ui-btn ui-bar-" + mytheme);
         $('div.subscribelink a').attr("data-role", "button").attr("data-inline", "true");
         $('.unlist').attr("data-role", "controlgroup");
+        //$('.unlist li:last-child div.coursebox h3 a').addClass("ui-corner-bottom ui-controlgroup-last"); moved to init at bottom
         $('div.coursebox a').attr("data-role", "button").attr("data-icon", "arrow-r").attr("data-iconpos", "right").attr("data-theme", mythemeb);
         $('.box.categorybox').attr("data-role", "controlgroup");
         $('div.categorylist div.category a').attr("data-role", "button").attr("data-theme", mythemeb);
@@ -247,20 +253,17 @@ $(document).ready(function() {
     });
 
     //collapsed topic only stuff
-    $('div#page-course-view-topcollPAGE').live('pagebeforecreate',function(event, ui){
-        $('#page-course-view-topcollPAGE ul.section').attr("data-role", "none");
-        $('.section li img').removeClass("ui-li-icon");
-        $.getScript('../course/format/topcoll/module.js');
-        $('#page-course-view-topcollPAGE tr.cps a').attr("data-role", "button").attr("data-icon", "arrow-r");
-        $('#page-course-view-topcollPAGE #thetopics').attr("data-role", "controlgroup");
-        $('#page-course-view-topcollPAGE td.cps_centre').each(function(index) {
-            var cpsc = $(this).text().replace('<br>','').replace(')','');
-            $(this).prev('td').find('a').append('<span class="ui-li-count ui-btn-up-a ui-btn-corner-all">' + cpsc + '</span>');
-        });
+    $('div#page-course-view-topcollPAGE').live('pagecreate',function(event, ui){
+       // $('#page-course-view-topcollPAGE ul.section').attr("data-role", "none");
+       // $('.section li img').removeClass("ui-li-icon");
+        //$.getScript('../course/format/topcoll/format.js');
+        $.getScript('../course/format/topcoll/module.js');   
+
     });
 
     ///// functions below does stuff after creating page for some cleaning...
     $('div').live('pageinit',function(event, ui){
+        $('div#page-site-indexPAGE .unlist li:last-child div.coursebox h3 a').addClass("ui-corner-bottom ui-controlgroup-last");
         $('.path-calendar div.ui-radio label:first-child, .path-mod-lesson div.ui-radio label:first-child, #page-mod-wiki-createPAGE div.ui-radio label:first-child').addClass("afirst");
         $('.forumpost div.author a').removeAttr('data-role');
         //$('.questionflagimage2').removeClass("ui-btn-hidden");a#notificationyes

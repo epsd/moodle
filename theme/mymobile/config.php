@@ -34,8 +34,7 @@ $THEME->parents = array(
 
 // Set the stylesheets that we want to include for this theme
 $THEME->sheets = array(
-    'jmobile11',
-    'jmobile11_rtl',
+    'jmobile111',
     'core',
     'media'
 );
@@ -158,7 +157,7 @@ if ($thisdevice == "default" || $thisdevice == "tablet" || optional_param('mymob
 $THEME->javascripts = array(
     'jquery-1.7.1.min',
     'custom',
-    'jquery.mobile-1.1.0'
+    'jquery.mobile-1.1.1'
 );
 
 // Sets a custom render factory to use with the theme, used when working with custom renderers.
